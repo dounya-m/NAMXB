@@ -8,10 +8,6 @@ const dbConfig = require("./config/db");
 app.use(cors());
 app.use(express.json());
 
-
-
-
-
 // listen to port
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
