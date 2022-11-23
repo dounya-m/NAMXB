@@ -1,4 +1,4 @@
-const error = require("Error")
+const error = require("Error");
 
 function AppError() {
   (msg, statusCode) => {
@@ -11,4 +11,4 @@ function AppError() {
     error.captureStackTrace(this, this.constructor);
   };
 }
-export default { AppError };
+module.exports = { AppError };
