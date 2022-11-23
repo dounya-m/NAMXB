@@ -11,9 +11,10 @@ const dbConfig = require("./config/db");
 
 app.use(cors({ credentials: true, origin: "http://localhost:5000" }));
 app.use(express.json());
-app.use(errorHandler);
 
 app.use('/api/admin', require('./routes/adminRoutes'))
+app.use(errorHandler);
+
 // listen to port
 app.listen(port, () => {
   console.log(`Server is running on PORT : ${port}`);
