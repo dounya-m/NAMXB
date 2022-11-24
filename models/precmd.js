@@ -9,7 +9,7 @@ const precmdSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "clients",
+      ref: "users",
       require: true,
     },
     quantité: {
