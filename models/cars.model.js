@@ -5,16 +5,24 @@ const carsSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    detailOfCar: {
-      type: Object,
+    image: {
+      type: String,
       required: true
+    },
+    config: {
+      type: Object,
+      required: true,
+      description: {
+        type: String,
+        required: true
+      },
+      details: {
+        type: Object,
+        required: true
+      }
     }
   },
   { timestamps: true }
 );
-
-
-
-
 
 module.exports = mongoose.model("cars", carsSchema);

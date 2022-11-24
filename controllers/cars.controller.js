@@ -25,13 +25,9 @@ const createCar = (req, res) => {
   });
 };
 
-
-
-
 const getOneCarById = (req, res) => {
   const id = req.params.id;
-  busServes.getBusById(id).then((results, error) => {
-    console.log(error);
+  carsModel.findById(id).then((results, error) => {
     if (results) {
       res.status(200).json({
         success: 1,
@@ -44,27 +40,40 @@ const getOneCarById = (req, res) => {
         message: "Failed to insert Data..."
       });
     }
-    if (err) {
+    if (error) {
       return res.json({
         success: 0,
         message: error
       });
     }
   });
-}
+};
 
 const getAllCars = async (req, res) => {
-  const results = await busServes.getAllBuses();
-  return res.json({
-    success: 1,
-    data: results
+  await carsModel.find().then((results, error) => {
+    if (error) {
+      return res.json({
+        success: 0,
+        error: error
+      });
+    }
+    if (!results) {
+      return res.json({
+        success: 0,
+        message: "Record not Found"
+      });
+    }
+    return res.json({
+      success: 1,
+      data: results
+    });
   });
-}
+};
 
-const updateOneCar =  (req, res) => {
+const updateOneCar = (req, res) => {
   const id = req.params.id;
   const body = req.body;
-  busServes.updateBus(id, body).then((results, error) => {
+  carsModel.findByIdAndUpdate(id, body).then((results, error) => {
     if (error) {
       return res.json({
         success: 0,
@@ -82,11 +91,11 @@ const updateOneCar =  (req, res) => {
       data: "َAlready updated"
     });
   });
-}
+};
 
 const deleteCar = (req, res) => {
   const id = req.params.id;
-  busServes.deleteBus(id).then((results, error) => {
+  carsModel.findByIdAndUpdate(id).then((results, error) => {
     if (error) {
       return res.json({
         success: 0,
@@ -104,8 +113,12 @@ const deleteCar = (req, res) => {
       data: "َAlready updated"
     });
   });
-}
+};
 
 module.exports = {
-  createCar
+  createCar,
+  getOneCarById,
+  getAllCars,
+  updateOneCar,
+  deleteCar
 };

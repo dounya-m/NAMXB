@@ -5,8 +5,10 @@ const router = express.Router();
 
 router.post("/", carsController.createCar);
 
+router.get("/",  carsController.getAllCars);
+router.get("/:id", carsController.getOneCarById);
+router.put("/:id",  carsController.updateOneCar);
+router.delete("/:id", carsController.deleteCar);
 
-// router.get("/", detailController.getAllAdmins);
-// router.get("/:id", detailController.getOneAdminByAdminId);
 
 module.exports = {router} ;
