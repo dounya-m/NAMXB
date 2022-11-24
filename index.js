@@ -6,14 +6,14 @@ require("dotenv").config();
 require("./config/db");
 
 
-const detailRouter = require("./routes/details.router");
+const carsRouters = require("./routes/cars.router");
 const errorHandler =  require("./helpers/errorHandler");
 
 const app = express();
 app.use(cors({ credentials: true, origin: "http://localhost:3001" }));
 app.use(express.json());
 
-app.use("/api/detail", detailRouter.router);
+app.use("/api/cars", carsRouters.router);
 
 app.get("/", (req, res) => {
   res.json({

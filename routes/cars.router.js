@@ -1,9 +1,9 @@
 const express = require("express");
-const detailController = require("../controllers/details.controller");
+const carsController = require("../controllers/cars.controller");
 const router = express.Router();
 
 
-router.post("/", detailController.createDetails);
+router.post("/", carsController.createCar);
 
 
 // router.get("/", detailController.getAllAdmins);
