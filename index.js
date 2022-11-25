@@ -1,21 +1,33 @@
 const express = require("express");
-const app = express();
-const {errorHandler} = require('./middleware/errorMiddlware')
-const dotenv = require("dotenv").config();
 const cors = require("cors");
+require("dotenv").config();
+require("./config/db");
 
 
-const port = process.env.PORT || 5000;
-const dbConfig = require("./config/db");
+const carsRouters = require("./routes/cars.router");
+const errorHandler =  require("./helpers/errorHandler");
 
-
-app.use(cors({ credentials: true, origin: "http://localhost:5000" }));
+const app = express();
+app.use(cors({ credentials: true, origin: "http://localhost:3001" }));
 app.use(express.json());
 
-app.use('/api/admin', require('./routes/adminRoutes'))
-app.use(errorHandler);
+app.use("/api/cars", carsRouters.router);
+
+app.get("/", (req, res) => {
+  res.json({
+    success: 1,
+    message: "I am listening on port " + process.env.PORT
+  });
+});
+
+app.all("*", (req, res, next) => {
+  next(new AppError(`the url ${req.originalUrl} does not exist`, 404));
+});
+
+app.use(errorHandler.messageErr);
 
 // listen to port
-app.listen(port, () => {
-  console.log(`Server is running on PORT : ${port}`);
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Server up and running on PORT : ", process.env.PORT);
 });
+
