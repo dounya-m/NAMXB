@@ -33,9 +33,14 @@ const {body, validationResult} = require('express-validator')
   })
 
   const authToken = (id) =>{
-    return jwt.sign({id}, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '1d'
-      })
+
+        const accessToken = jwt.sign({id}, process.env.ACCESS_TOKEN_SECRET, {
+          expiresIn: '1m'
+          });
+          const refreshToken = jwt.sign({id}, process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: '1d'
+            });
+              return({accessToken, refreshToken})
   }
   
 module.exports = { getAdmin, creatAdmin }
