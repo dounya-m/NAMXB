@@ -5,6 +5,7 @@ const adminSchema = new mongoose.Schema({
   
   name:{
     type: String,
+    lowercase: true,
     required:  [true, 'Please enter your name']
   },
   phone:{
@@ -13,6 +14,7 @@ const adminSchema = new mongoose.Schema({
   },
   email:{
     type: String,
+    lowercase: true,
     required: [true, 'please enter your email'],
     unique: true
   },

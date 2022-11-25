@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const Admine = require("../models/adminModel");
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const {body, validationResult} = require('express-validator')
 
 
 
@@ -9,12 +10,15 @@ const bcrypt = require('bcrypt')
     const admines = await Admine.find({});
     res.json(admines)
   });
+
+
   const creatAdmin = asyncHandler(async(req, res) => {
     const salt = await bcrypt.genSalt(10)
 
     if(!req.body.name || !req.body.phone || !req.body.email || !req.body.password){
       res.status(400).json({message: 'this text is required'})
     };
+
     const admin = await Admine.create({
       name: req.body.name,
       phone: req.body.phone,
