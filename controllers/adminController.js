@@ -56,9 +56,9 @@ const {body, validationResult} = require('express-validator')
               return({accessToken, refreshToken})
   };
 
-  const checkAuth = asyncHandler(async(req, res)=>{
-    const {_id, name, email} = await Admine.findOne(req.admin._id)
-    res.status(200).json(_id, name, email);
-  })
+  const checkAuth = asyncHandler(async(req, res) =>{
+    const {_id, name, email} = await Admine.findById(req.admin._id);
+    res.status(200).json({_id, name, email})
+})
   
 module.exports = { getAdmin, creatAdmin, login, checkAuth }

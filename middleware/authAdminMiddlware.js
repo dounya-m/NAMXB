@@ -10,7 +10,7 @@ const protect = asyncHandler(async (req, res, next) =>{
         token = req.headers.asyncHandler.split(" ")[1];
 
         //verify the token
-        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, process.env.REFRECH_TOKEN_SECRET);
 
         //Get User From token
         req.admin = await Admin.findById(decoded.id).select("-password");
@@ -27,9 +27,6 @@ const protect = asyncHandler(async (req, res, next) =>{
     }
 });
 
-const checkAuth = asyncHandler(async(req, res) =>{
-    const {_id, name, email} = await Admin.findOne(req.admin._id);
-    res.status(200).json({_id, name, email})
-})
+
 
 module.exports = {protect};
