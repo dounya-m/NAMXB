@@ -9,7 +9,7 @@ const {
   CancelPrecmd,
 } = require("../controllers/precmdController");
 
-router.post("/precmd-car/:userId", precmdCar);
+router.post("/precmd-car/:userId/:car_id", precmdCar);
 router.get("/get-all-precmd", authMiddleware, GetAllPrecmds);
 router.get("/:user_Id", GetAllPrecmdsByUser);
 router.delete("/:precmd_id/:user_id/:car_id", CancelPrecmd);
@@ -17,4 +17,3 @@ router.delete("/:precmd_id/:user_id/:car_id", CancelPrecmd);
 
 module.exports = router;
 
-// Path: routes\userRouter.js

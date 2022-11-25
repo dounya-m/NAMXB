@@ -13,12 +13,16 @@ const precmdSchema = new mongoose.Schema(
       require: true,
     },
     quantité: {
-      type: Array,
+      type: Number,
       require: true,
+    },
+    date: {
+      type: Date,
+      default: Date.now,
     },
     transactionId: {
       type: String,
-      require: true,
+      default:" 1234"
     },
   },
   {
