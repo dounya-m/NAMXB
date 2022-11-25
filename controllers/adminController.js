@@ -30,7 +30,19 @@ const {body, validationResult} = require('express-validator')
     admin.save()
     // await admin.save();
     res.status(200).json({admin, token: authToken(admin._id)})
-  })
+  });
+
+  const login = asyncHandler(async(req, res) =>{
+    const {email, password} = req.body;
+    const admin = await Admine.findOne({ email });
+    if(!admin){
+      res.status(400).json('email dont exist please get register')
+    }
+    if(email && (await bcrypt.compare(password, admin.password))){
+      res.json({admin, token: authToken(admin._id)})
+    }
+
+  });
 
   const authToken = (id) =>{
 
@@ -43,4 +55,4 @@ const {body, validationResult} = require('express-validator')
               return({accessToken, refreshToken})
   }
   
-module.exports = { getAdmin, creatAdmin }
+module.exports = { getAdmin, creatAdmin, login }

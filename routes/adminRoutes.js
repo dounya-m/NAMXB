@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.get("/", admin.getAdmin);
 router.post("/", admin.creatAdmin)
+router.post("/login", admin.login)
 
 
 // router.get("/", auth.checkToken, AdminController.getAllAdmins);
