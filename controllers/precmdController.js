@@ -137,6 +137,7 @@ exports.update = (req, res) => {
 }
 
 
+
 // Retrieve all precmds from the database.
 exports.GetAllPrecmds = (req, res) => {
     precmd.getAll()
