@@ -19,12 +19,17 @@ const protect = asyncHandler(async (req, res, next) =>{
             console.log(error);
             res.status(401);
             throw new Error("Not authorized");
-                }
+        }
     }
     if (!token) {
     res.status(401);
     throw new Error("Not authorized, No token");
     }
+});
+
+const checkAuth = asyncHandler(async(req, res) =>{
+    const {_id, name, email} = await Admin.findOne(req.admin._id);
+    res.status(200).json({_id, name, email})
 })
 
 module.exports = {protect};

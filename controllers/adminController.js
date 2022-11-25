@@ -42,6 +42,7 @@ const {body, validationResult} = require('express-validator')
       res.json({admin, token: authToken(admin._id)})
     }
 
+    res.json('is login')
   });
 
   const authToken = (id) =>{
@@ -53,6 +54,11 @@ const {body, validationResult} = require('express-validator')
             expiresIn: '1d'
             });
               return({accessToken, refreshToken})
-  }
+  };
+
+  const checkAuth = asyncHandler(async(req, res)=>{
+    const {_id, name, email} = await Admine.findOne(req.admin._id)
+    res.status(200).json(_id, name, email);
+  })
   
-module.exports = { getAdmin, creatAdmin, login }
+module.exports = { getAdmin, creatAdmin, login, checkAuth }
