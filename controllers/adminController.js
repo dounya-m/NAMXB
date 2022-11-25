@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const Admine = require("../models/adminModel");
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 const {body, validationResult} = require('express-validator')
 
 
@@ -28,7 +29,13 @@ const {body, validationResult} = require('express-validator')
     admin.password = await bcrypt.hash(admin.password, salt);
     admin.save()
     // await admin.save();
-    res.status(200).json(admin)
+    res.status(200).json({admin, token: authToken(admin._id)})
   })
+
+  const authToken = (id) =>{
+    return jwt.sign({id}, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: '1d'
+      })
+  }
   
 module.exports = { getAdmin, creatAdmin }
