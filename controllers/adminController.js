@@ -48,12 +48,12 @@ const {body, validationResult} = require('express-validator')
   const authToken = (id) =>{
 
         const accessToken = jwt.sign({id}, process.env.ACCESS_TOKEN_SECRET, {
-          expiresIn: '1m'
+          expiresIn: '1d'
           });
           const refreshToken = jwt.sign({id}, process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: '1d'
             });
-              return({accessToken, refreshToken})
+              return({accessToken})
   };
 
   const checkAuth = asyncHandler(async(req, res) =>{
