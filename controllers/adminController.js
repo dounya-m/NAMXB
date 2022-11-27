@@ -45,14 +45,12 @@ const {body, validationResult} = require('express-validator')
     res.json('is login')
   });
 
-  const authToken = (id) =>{
+  const authToken = (_id) =>{
 
-        const accessToken = jwt.sign({id}, process.env.ACCESS_TOKEN_SECRET, {
-          expiresIn: '1d'
-          });
-          const refreshToken = jwt.sign({id}, process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: '1d'
-            });
+        const accessToken = jwt.sign({_id}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1d'});
+          // const refreshToken = jwt.sign({id}, process.env.ACCESS_TOKEN_SECRET, {
+          //   expiresIn: '1d'
+          //   });
               return({accessToken})
   };
 
