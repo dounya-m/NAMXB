@@ -1,14 +1,15 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
-
-var project = new Schema({
-  ProjectOwner: String,
-  ProjectName: String,
-  ProjectDetails: String,
-  ProjectImagePath: [String],
-  ProjectPdfPath: String,
-  ProjectLocation: Number,
-  ProjectAmount: String
-});
-
-module.exports = mongoose.model("project", project);
+const mongoose = require("mongoose");
+const imagesSchema = new mongoose.Schema(
+  {
+    filename: {
+      type: String,
+      require: true
+    },
+    filepath: {
+      type: String,
+      require: true
+    }
+  },
+  { timestamps: true }
+);
+module.exports = mongoose.model("images", imagesSchema);
