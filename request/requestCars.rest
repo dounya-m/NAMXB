@@ -1,0 +1,7 @@
+
+### CREATE CAR
+POST http://localhost:5000/api/cars
+
+
+### GET ALL CARS
+GET http://localhost:5000/api/cars

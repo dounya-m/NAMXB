@@ -5,25 +5,27 @@ const carsSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    image: {
+    description: {
       type: String,
       required: true
     },
-    config: {
-      type: Object,
-      required: true,
-      description: {
-        type: String,
-        required: true
-      },
-      color: {
-        type: String,
-        required: true
-      },
-      details: {
-        type: Object,
-        required: true
-      }
+    color: {
+      type: String,
+      required: true
+    },
+    treeDimensions: {
+      type: String,
+      required: true
+    },
+    images: {
+      type: Array,
+      default: [],
+      required: true
+    },
+    details: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "types",
+      require: true,
     }
   },
   { timestamps: true }

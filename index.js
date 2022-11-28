@@ -3,15 +3,15 @@ const cors = require("cors");
 require("dotenv").config();
 require("./config/db");
 
-
-const carsRouters = require("./routes/cars.router");
-const errorHandler =  require("./helpers/errorHandler");
+const errorHandler = require("./helpers/errorHandler");
 
 const app = express();
 app.use(cors({ credentials: true, origin: "http://localhost:3001" }));
 app.use(express.json());
 
-app.use("/api/cars", carsRouters.router);
+app.use("/api/cars", require("./routes/cars.router").router);
+app.use("/api/upload", require("./routes/images.router").router);
+
 
 app.get("/", (req, res) => {
   res.json({
@@ -30,4 +30,3 @@ app.use(errorHandler.messageErr);
 app.listen(process.env.PORT || 5000, () => {
   console.log("Server up and running on PORT : ", process.env.PORT);
 });
-
