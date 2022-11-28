@@ -10,7 +10,7 @@ const {
 } = require("../controllers/precmdController");
 
 router.post("/precmd-car/:userId/:car_id", precmdCar);
-router.get("/get-all-precmd", authMiddleware, GetAllPrecmds);
+router.get("/get-all-precmd", GetAllPrecmds);
 router.get("/:user_Id", GetAllPrecmdsByUser);
 router.delete("/:precmd_id/:user_id/:car_id", CancelPrecmd);
 
