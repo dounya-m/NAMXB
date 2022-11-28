@@ -38,6 +38,15 @@ const login = asyncHandler(async(req, res) => {
         res.json({user, token: generetToken(user._id)})
     }
     res.json('is logged')
+});
+
+const deletUser = asyncHandler(async(req, res) => {
+    const user = await User.findById(req.params._id)
+    if(!user){
+        res.status(400).json({message: 'this user dont exist'})
+    }
+    await User.findByIdAndDelete(req.params._id)
+    res.status(200).json({message: 'user hase been deleted'})
 })
 
 const generetToken = (id) => {
@@ -45,4 +54,4 @@ const generetToken = (id) => {
     return({accssToken})
 }
 
-module.exports = {getUsers, addUser, login}
+module.exports = {getUsers, addUser, login, deletUser}
