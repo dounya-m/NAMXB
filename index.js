@@ -5,14 +5,18 @@ require("./config/db");
 
 const errorHandler = require("./helpers/errorHandler");
 
+
 const app = express();
-app.use(cors({ credentials: true, origin: "http://localhost:3001" }));
+// app.use(cors({ credentials: true, origin: "http://localhost:5000" }));
 app.use(express.json());
 app.set('view engine', 'ejs');
 
 app.use("/api/cars", require("./routes/cars.router").router);
 app.use("/api/upload", require("./routes/images.router").router);
 
+app.use("/api/cars", carsRouters.router);
+app.use('/api/admin', require('./routes/adminRoutes'))
+app.use('/api/user', require('./routes/usersRoutes'))
 
 app.get("/", (req, res) => {
   res.json({
