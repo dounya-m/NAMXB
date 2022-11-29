@@ -4,55 +4,49 @@ const path = require("path");
 
 module.exports = {
   saveProject: async function (req, res, file) {
-    if (req.file) {
-      const upload = await uploadImage(req?.file);
-      imagesModel.create(upload).then((results, err) => {
-        if (results) {
-          res.status(200).json({
-            success: 1,
-            message: "Data inserted Successfully...",
-            data: results
-          });
-        } else {
-          res.json({
-            success: 0,
-            message: "Failed to insert Data..."
-          });
-        }
-        if (err) {
-          res.json({
-            success: 0,
-            message: error
-          });
-        }
-      });
-    }
+    try {
+      const file = req.file;
 
-    savingProject.save(function (err) {
-      if (err) {
-        console.log(err);
+      if (file) {
+        const upload = await uploadImage(file);
+        imagesModel.create(upload).then((results, err) => {
+          if (results) {
+            res.status(200).json({
+              success: 1,
+              message: "Data inserted Successfully...",
+              data: results
+            });
+          } else {
+            res.json({
+              success: 0,
+              message: "Failed to insert Data..."
+            });
+          }
+          if (err) {
+            res.json({
+              success: 0,
+              message: error
+            });
+          }
+        });
+      } else {
+        res.status(401).json({ error: "Please provide an image" });
+      }
+    } catch (error) {
+      if (error) {
+        console.log(error);
         res.render("project/create", {
           title: "La información no es válida, volver a introducir los datos"
         });
-      }
-      if (!err) {
+      } else {
         res.send("ok");
       }
-    });
+    }
   }
 };
 
 //
-async function uploadImage(file) {
-  if (!file) {
-    res.status(401).json({ error: "Please provide an image" });
-  }
-  const filename = await save(file);
-  return filename;
-}
-
-//
-async function save(buffer) {
+async function uploadImage(buffer) {
   const imagePath = path.join(process.cwd(), "/uploads");
   const ext = buffer.originalname.split(".")[1];
   const filename = Date.now() + "." + ext;

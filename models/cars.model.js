@@ -21,11 +21,6 @@ const carsSchema = new mongoose.Schema(
       type: Array,
       default: [],
       required: true
-    },
-    details: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "types",
-      require: true,
     }
   },
   { timestamps: true }
