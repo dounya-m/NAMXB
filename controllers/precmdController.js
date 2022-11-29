@@ -59,6 +59,7 @@ exports.precmdCar = (req, res) => {
         num_carte_bancaire : req.body.num_carte_bancaire,
         quantité: req.body.quantité,
         
+<<<<<<< HEAD
     });    
     const prhiuecmd = new db({
         user: req.params.userId,
@@ -67,6 +68,8 @@ exports.precmdCar = (req, res) => {
         num_carte_bancaire : req.body.num_carte_bancaire,
         quantité: req.body.quantité,
         
+=======
+>>>>>>> 16a4d4c0d78e59b4566539213f5bd45963934b7c
     });
     // save precmd in the database
     precmd

@@ -7,4 +7,4 @@ const messageErr = (err, req, res, next) => {
   });
 };
 
-export default { messageErr };
+module.exports = { messageErr }
