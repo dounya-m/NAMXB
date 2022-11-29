@@ -1,9 +1,6 @@
-const db = require("../models/precmd");
-// const AppError = require("../helpers/appError");
-// const precmd = db.precmds;
 const car = require("../models/cars.model")
 const user = require("../models/Usermodel");
-const precmd = require("../models/precmd");
+const precmd = require("../models/precmd.model");
 
 
 
