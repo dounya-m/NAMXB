@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express();
-const authMiddleware = require("../middlewares/authMiddleware");
+// const authMiddleware = require("../middlewares/authMiddleware");
 
 const {
   precmdCar,

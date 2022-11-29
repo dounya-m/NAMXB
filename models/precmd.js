@@ -5,25 +5,33 @@ const precmdSchema = new mongoose.Schema(
     car: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "cars",
-      require: true,
+      required: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
-      require: true,
+      required: true,
+    },
+    adresse: {
+      type: String,
+      required: true,
+    },
+    num_carte_bancaire: {
+      type: String,
+      required: true,
     },
     quantité: {
       type: Number,
-      require: true,
+      required: true,
     },
     date: {
       type: Date,
       default: Date.now,
     },
-    transactionId: {
-      type: String,
-      default:" 1234"
-    },
+    // transactionId: {
+    //   type: String,
+    //   default:" 1234"
+    // },
   },
   {
     timestamps: true,

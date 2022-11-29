@@ -15,6 +15,7 @@ app.use(express.json());
 app.use("/api/cars", carsRouters.router);
 app.use('/api/admin', require('./routes/adminRoutes'))
 app.use('/api/user', require('./routes/usersRoutes'))
+app.use('/api/precmd', require('./routes/precmdRouter'))
 
 app.get("/", (req, res) => {
   res.json({

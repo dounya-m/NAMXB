@@ -5,8 +5,6 @@ const jwt = require('jsonwebtoken')
 const {body, validationResult} = require('express-validator')
 
 
-
-
   const getAdmin = asyncHandler(async (req, res, next) =>{
     const admines = await Admine.find({});
     res.json(admines)
