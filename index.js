@@ -10,12 +10,6 @@ app.use(cors({ credentials: true, origin: "http://localhost:5000" }));
 app.use(express.json());
 app.set("view engine", "ejs");
 
-<<<<<<< HEAD
-app.use("/api/cars", carsRouters.router);
-app.use('/api/admin', require('./routes/adminRoutes'))
-app.use('/api/user', require('./routes/usersRoutes'))
-app.use('/api/precmd', require('./routes/precmdRouter'))
-=======
 app.use("/api/cars", require("./routes/cars.router").router);
 app.use("/api/upload", require("./routes/images.router").router);
 app.use("/api/types", require("./routes/typeRoutes").router);
@@ -23,7 +17,8 @@ app.use("/api/details", require("./routes/detailRoutes").router);
 
 app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/user", require("./routes/usersRoutes"));
->>>>>>> e14089a0ecc1f739a0474f6156f5cd3cba679142
+
+app.use('/api/precmd', require('./routes/precmdRouter'))
 
 app.get("/", (req, res) => {
   res.json({
